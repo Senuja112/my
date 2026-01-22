@@ -97,7 +97,7 @@ export default function Navbar() {
                     <div className="w-[1px] h-6 bg-white/10 mx-2 hidden md:block" />
 
                     <a
-                        href="https://github.com"
+                        href="https://github.com/clyuu"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-medium text-white hover:bg-white/10 rounded-full transition-colors no-underline"
