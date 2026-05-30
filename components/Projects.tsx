@@ -4,104 +4,75 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 const projects = [
-    {
-        id: 1,
-        title: "Neon Horizon",
-        category: "WebGL Experience",
-        description: "A 3D immersive journey through a synthwave cityscape.",
-        image: "/p1.png",
-        colSpan: "md:col-span-2"
-    },
-    {
-        id: 2,
-        title: "Vortex",
-        category: "E-Commerce",
-        description: "High-performance headless shopify store with liquid motion.",
-        image: "/p2.png",
-        colSpan: "md:col-span-1"
-    },
-    {
-        id: 3,
-        title: "Echo",
-        category: "AI Dashboard",
-        description: "Real-time data visualization platform with predictive analytics.",
-        image: "/p2.png", // Reusing for demo
-        colSpan: "md:col-span-1"
-    },
-    {
-        id: 4,
-        title: "Mirage",
-        category: "Portfolio",
-        description: "Award-winning personal site featuring micro-interactions.",
-        image: "/p1.png", // Reusing for demo
-        colSpan: "md:col-span-2"
-    }
+  {
+    id: 1,
+    title: "Business Landing Page",
+    category: "Website Design",
+    description: "A clean, conversion-focused landing page for a professional service brand.",
+    image: "/p1.png",
+  },
+  {
+    id: 2,
+    title: "Portfolio System",
+    category: "Frontend Build",
+    description: "A responsive personal portfolio with structured sections and smooth interactions.",
+    image: "/p2.png",
+  },
+  {
+    id: 3,
+    title: "Dashboard Interface",
+    category: "UI Engineering",
+    description: "A practical web app interface designed for clarity, scanning, and daily use.",
+    image: "/p2.png",
+  },
 ];
 
 export default function Projects() {
-    return (
-        <section className="relative z-20 bg-[#0a0a0a] min-h-screen py-32 px-4 md:px-8">
-            <div className="max-w-7xl mx-auto">
+  return (
+    <section id="projects" className="bg-[#f8fbff] px-5 py-24 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <p className="text-sm font-bold uppercase text-[#f97316]">Selected Work</p>
+            <h2 className="mt-3 text-4xl font-black text-[#0f2742] md:text-6xl">Projects with a professional finish.</h2>
+          </div>
+          <p className="max-w-md text-base leading-7 text-[#486179]">
+            A portfolio should quickly show taste, trust, and execution quality. These project blocks are designed for that.
+          </p>
+        </div>
 
-                {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-24">
-                    <h2 className="text-[12vw] leading-[0.8] font-black text-white tracking-tighter uppercase mix-blend-difference">
-                        Selected <br /> Works
-                    </h2>
-                    <div className="flex flex-col items-end">
-                        <span className="text-white/50 text-sm uppercase tracking-widest mb-2">(2023 — 2025)</span>
-                        <p className="text-gray-400 text-lg max-w-xs text-right hidden md:block">
-                            Digital experiences crafted with code, passion, and precision.
-                        </p>
-                    </div>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <motion.article
+              key={project.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              viewport={{ once: true, margin: "-80px" }}
+              className="group overflow-hidden rounded-lg border border-[#d9e6f2] bg-white shadow-lg shadow-blue-100/40"
+            >
+              <div className="relative aspect-[16/11] overflow-hidden bg-[#dbeafe]">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-2 bg-[linear-gradient(90deg,#f97316,#1d4ed8)]" />
+              </div>
+
+              <div className="p-6">
+                <p className="text-sm font-bold uppercase text-[#1d4ed8]">{project.category}</p>
+                <h3 className="mt-3 text-2xl font-black text-[#0f2742]">{project.title}</h3>
+                <p className="mt-4 leading-7 text-[#486179]">{project.description}</p>
+                <div className="mt-6 inline-flex h-10 items-center rounded-md bg-[#fff7ed] px-4 text-sm font-bold text-[#c2410c]">
+                  View case study
                 </div>
-
-                {/* Masonry Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
-                            viewport={{ once: true, margin: "-100px" }}
-                            className={`group relative h-[50vh] md:h-[60vh] overflow-hidden rounded-md bg-gray-900 ${project.colSpan}`}
-                        >
-                            {/* Image Background */}
-                            <div className="absolute inset-0">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                />
-                                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
-                            </div>
-
-                            {/* Content Overlay */}
-                            <div className="absolute inset-0 p-8 flex flex-col justify-between z-10">
-                                <div className="flex justify-between items-start">
-                                    <span className="px-3 py-1 rounded-full border border-white/20 text-xs text-white uppercase tracking-wider bg-black/30 backdrop-blur-md">
-                                        {project.category}
-                                    </span>
-                                    <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                                        →
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <h3 className="text-4xl md:text-5xl font-bold text-white mb-2">
-                                        {project.title}
-                                    </h3>
-                                    <p className="text-gray-300 text-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-                                        {project.description}
-                                    </p>
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
